@@ -18,14 +18,14 @@ end
 single_line = ARGV[0] == '-l'
 code = ARGV.drop(single_line ? 1 : 0).join(' ')
 code = eval("Proc.new { #{code} }")
-single_line ? STDIN.each { |l| execute(l, code) } : execute(STDIN.readlines, code)
+single_line ? STDIN.each { |l| execute(l, code) } : execute(STDIN.each_line, code)
 ```
 
 Clone this repo and copy the `rb` file to somewhere in your path (or just copy and paste the above).
 
 With this you can use ruby as a command line utility much more ergonomically than invoking it the standard way.
 
-There's only one switch `-l` which runs your code on each line separately. Otherwise you get the whole stdin as an Array of lines. It's `instance_eval`ed so some methods need `self` to work, eg. `self[-1]`
+There's only one switch `-l` which runs your code on each line separately. Otherwise you get an Enumerator that returns the lines of stdin. It's `instance_eval`ed so some methods need `self` to work, eg. `self[-1]`
 
 ## Install
 
