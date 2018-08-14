@@ -31,7 +31,7 @@ There's only one switch `-l` which runs your code on each line separately. Other
 
 Just paste this line into your terminal to install `rb`:
 ```
-curl -sL http://bit.ly/install-rb-util | bash -
+curl -sL https://bit.ly/install-rb-util | bash -
 ```
 
 
