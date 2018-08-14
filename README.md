@@ -27,6 +27,12 @@ With this you can use ruby as a command line utility much more ergonomically tha
 
 There's only one switch `-l` which runs your code on each line separately. Otherwise you get the whole stdin as an Array of lines. It's `instance_eval`ed so some methods need `self` to work, eg. `self[-1]`
 
+## Install
+
+Just paste this line into your terminal to install `rb`:
+```
+curl -sL http://bit.ly/install-rb-util | bash -
+```
 
 
 ### Examples
