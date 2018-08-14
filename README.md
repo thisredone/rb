@@ -25,7 +25,7 @@ Clone this repo and copy the `rb` file to somewhere in your path (or just copy a
 
 With this you can use ruby as a command line utility much more ergonomically than invoking it the standard way.
 
-There's only one switch `-l` which runs your code on each line separately. Otherwise you get the whole stdin as an Array of lines.
+There's only one switch `-l` which runs your code on each line separately. Otherwise you get the whole stdin as an Array of lines. It's `instance_eval`ed so some methods need `self` to work, eg. `self[-1]`
 
 
 
@@ -45,7 +45,7 @@ There's only one switch `-l` which runs your code on each line separately. Other
 ###### Display how much time ago containers have exited
 
 ```shell
-> docker ps -a | rb grep /Exited/ | rb -l 'self.split.last.ljust(20) + " => " + self.split(/ {2,}/)[-2]'
+> docker ps -a | rb grep /Exited/ | rb -l 'split.last.ljust(20) + " => " + split(/ {2,}/)[-2]'
 
 # angry_hamilton      => Exited (0) 18 hours ago
 # dreamy_lamport      => Exited (0) 3 days ago
