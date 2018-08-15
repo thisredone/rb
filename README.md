@@ -16,9 +16,9 @@ rescue Errno::EPIPE
 end
 
 single_line = ARGV[0] == '-l'
-code = ARGV.drop(single_line ? 1 : 0).join(' ')
-code = eval("Proc.new { #{code} }")
-single_line ? STDIN.each { |l| execute(l, code) } : execute(STDIN.readlines, code)
+expr = ARGV.drop(single_line ? 1 : 0).join(' ')
+code = eval("Proc.new { #{expr} }")
+single_line ? STDIN.each { |l| execute(l.chomp, code) } : execute(STDIN.readlines, code)
 ```
 
 Clone this repo and copy the `rb` file to somewhere in your path (or just copy and paste the above).
