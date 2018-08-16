@@ -80,3 +80,10 @@ sudo curl https://raw.githubusercontent.com/thisredone/rb/master/rb -o /usr/loca
 # /dev/sda2                    237M   85M  140M  38% /boot
 ```
 
+
+
+###### Count files by their extension
+
+```shell
+find . -type f | rb -l File.extname self | rb 'group_by(&:itself).map { |ext, o| "#{ext.chomp}: #{o.size}" }'
+```
