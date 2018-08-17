@@ -85,7 +85,7 @@ sudo curl https://raw.githubusercontent.com/thisredone/rb/master/rb -o /usr/loca
 ###### Count files by their extension
 
 ```shell
-> find . -type f | rb -l File.extname self | rb 'group_by(&:itself).map { |ext, o| "#{ext.chomp}: #{o.size}" }'
+> find . -type f | rb 'group_by(&File.method(:extname)).map { |ext, o| "#{ext.chomp}: #{o.size}" }'
 
 # : 3
 # .rb: 19
