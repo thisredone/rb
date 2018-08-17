@@ -9,4 +9,4 @@ end
 single_line = ARGV[0] == '-l'
 expr = ARGV.drop(single_line ? 1 : 0).join(' ')
 code = eval("Proc.new { #{expr} }")
-single_line ? STDIN.each { |l| execute(l.chomp, code) } : execute(STDIN.readlines, code)
+single_line ? STDIN.each { |l| execute(l.chomp, code) } : execute(STDIN.each_line, code)
