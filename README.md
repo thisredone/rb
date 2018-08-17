@@ -16,9 +16,9 @@ rescue Errno::EPIPE
 end
 
 single_line = ARGV[0] == '-l'
-code = ARGV.drop(single_line ? 1 : 0).join(' ')
-code = eval("Proc.new { #{code} }")
-single_line ? STDIN.each { |l| execute(l, code) } : execute(STDIN.each_line, code)
+expr = ARGV.drop(single_line ? 1 : 0).join(' ')
+code = eval("Proc.new { #{expr} }")
+single_line ? STDIN.each { |l| execute(l.chomp, code) } : execute(STDIN.each_line, code)
 ```
 
 Clone this repo and copy the `rb` file to somewhere in your path (or just copy and paste the above).
@@ -80,3 +80,14 @@ sudo curl https://raw.githubusercontent.com/thisredone/rb/master/rb -o /usr/loca
 # /dev/sda2                    237M   85M  140M  38% /boot
 ```
 
+
+
+###### Count files by their extension
+
+```shell
+> find . -type f | rb -l File.extname self | rb 'group_by(&:itself).map { |ext, o| "#{ext.chomp}: #{o.size}" }'
+
+# : 3
+# .rb: 19
+# .md: 1
+```
