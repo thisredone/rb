@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-load Dir.home + '/.rbrc' if File.exists?(Dir.home + '/.rbrc')
+File.join(Dir.home, '.rbrc').tap { |f| load f if File.exists?(f) }
 
 def execute(_, code)
   puts _.instance_eval(&code)

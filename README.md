@@ -1,6 +1,6 @@
 # rb
 
-With 10 lines of Ruby replace most of the command line tools that you use to process text inside of the terminal.
+With 9 lines of Ruby replace most of the command line tools that you use to process text inside of the terminal.
 
 
 
@@ -8,7 +8,7 @@ Here's the code
 
 ```ruby
 #!/usr/bin/env ruby
-load Dir.home + '/.rbrc' if File.exists?(Dir.home + '/.rbrc')
+File.join(Dir.home, '.rbrc').tap { |f| load f if File.exists?(f) }
 
 def execute(_, code)
   puts _.instance_eval(&code)
