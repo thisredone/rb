@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+load Dir.home + '/.rbrc' if File.exists?(Dir.home + '/.rbrc')
 
 def execute(_, code)
   puts _.instance_eval(&code)
