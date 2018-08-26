@@ -2,7 +2,8 @@
 File.join(Dir.home, '.rbrc').tap { |f| load f if File.exists?(f) }
 
 def execute(_, code)
-  puts _.instance_eval(&code)
+  result = _.instance_eval(&code)
+  puts result unless result.nil?
 rescue Errno::EPIPE
   exit
 end
