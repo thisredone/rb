@@ -94,6 +94,13 @@ sudo curl https://raw.githubusercontent.com/thisredone/rb/master/rb -o /usr/loca
 
 
 
+###### This problem http://vegardstikbakke.com/unix/
+
+```ruby
+ls | rb 'group_by { |x| x[/\d+/] }.select { |_, y| y.one? }.keys'
+```
+
+
 ## Extending rb
 
 The `~/.rbrc` file is loaded if it's available. Anything defined in there will be available inside `rb` scripts.
