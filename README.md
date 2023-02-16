@@ -118,3 +118,24 @@ end
 ```shell
 > ls | rb first.red
 ```
+
+## Alternatives
+
+For a more portable solution, note you can run `ruby` with the `-e` flag.
+
+[`$<`](https://ruby-doc.org/3.2.1/globals_rdoc.html#:~:text=%24%3C,as%20ARGF.) is a two-character global equivalent to [`ARGF`](https://ruby-doc.org/3.2.1/ARGF.html). `ARGF` gives you access to the standard input and includes `Enumerable`.
+
+```shell
+> docker ps | ruby -e '$<.drop(1).each{puts _1.split[1]}'
+
+# ubuntu
+# postgres
+```
+
+```shell
+> docker ps -a | ruby -e '$<.grep(/Exited/).each{puts _1.split.last.ljust(20) + " => " + _1.split(/ {2,}/)[-2]}'
+
+# angry_hamilton      => Exited (0) 18 hours ago
+# dreamy_lamport      => Exited (0) 3 days ago
+# prickly_hypatia     => Exited (0) 2 weeks ago
+```
