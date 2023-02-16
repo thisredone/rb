@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-File.join(Dir.home, '.rbrc').tap { |f| load f if File.exists?(f) }
+File.join(Dir.home, '.rbrc').tap { |f| load f if File.exist?(f) }
 
 def execute(_, code)
   puts _.instance_eval(&code)
